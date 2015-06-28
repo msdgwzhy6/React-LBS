@@ -15,20 +15,9 @@ var {
 } = React;
 
 var APP = React.createClass({
-  componentDidMount: function(){
-    global.nav = this.refs.nav;
-  },
-
-  getInitialState: function() {
-    return {
-      isNavBarHidden: true,
-    };
-  },
-
   render: function(){
     return (
       <NavigatorIOS
-        ref='nav'
         style={styles.container}
         initialRoute={{
           component: Login,

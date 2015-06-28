@@ -26,23 +26,21 @@ var Login = React.createClass({
   getInitialState: function() {
     return {
       username: '',
-      pwd: ''
+      pwd: '',
     };
   },
 
   componentDidMount: function(){
     var _that = this;
-    AsyncStorage.multiGet(['user', 'token'], function(errors, values){
-        if(!errors){
+    AsyncStorage.multiGet(['user', 'token'], function(errs, values){
+        if(!errs){
           //二维数组转对象
           var obj = Util.arr2Obj(values);
           //如果已经登录则直接登录
           if(obj.user && obj.token){
-            _that.setState({
-              user: obj.user,
-              token: obj.token
-            });
-            _that._goMainPage();
+            setTimeout(function(){
+              _that._goMainPage();
+            }, 300);
           }
         }
     });
@@ -80,33 +78,31 @@ var Login = React.createClass({
     );
   },
 
-  /*获取用户名*/
   _getUserName: function(event){
     this.setState({
       username: event.nativeEvent.text
     });
   },
 
-  /*获取密码*/
   _getPassword: function(event){
     this.setState({
       pwd: event.nativeEvent.text
     });
   },
 
-  /*提交*/
   _submit: function(){
     var username = this.state.username;
     var password = this.state.pwd;
 
     var _that = this;
-    if(username === 'admin' && password === '123'){
-      AsyncStorage.multiSet([['user', 'wlh'], ['token', '123']], function(errors){
-        if(!errors){
+    if(username == 'wlh' && password == '123'){
+      AsyncStorage.multiSet([['user', 'wlh'], ['token', '123']], function(errs){
+        if(!errs){
           _that._goMainPage();
         }
       });
     }
+
   },
   _goMainPage: function(){
     this.props.navigator.push({

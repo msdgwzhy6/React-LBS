@@ -3,6 +3,7 @@
 var Dimensions = require('Dimensions');
 var React = require('react-native');
 var PixelRatio = React.PixelRatio;
+var AdSupportIOS = require('AdSupportIOS');
 
 
 var Util = {
@@ -48,7 +49,8 @@ var Util = {
       obj[arr[i][0]] = arr[i][1];
     }
     return obj;
-  }
+  },
+  AdSupportIOS: AdSupportIOS,
 
 };
 
